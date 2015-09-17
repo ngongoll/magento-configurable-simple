@@ -26,6 +26,7 @@ class OrganicInternet_SimpleConfigurableProducts_Catalog_Block_Product_View_Type
             if (Mage::getStoreConfig('SCP_options/product_page/change_short_description')) {
                 $childProducts[$productId]["shortDescription"] = $this->helper('catalog/output')->productAttribute($product, nl2br($product->getShortDescription()), 'short_description');
             }
+            $childProducts[$productId]["deliveryTime"] = $product->getDeliveryTime();
 
             if (Mage::getStoreConfig('SCP_options/product_page/change_attributes')) {
                 $childBlock = $this->getLayout()->createBlock('catalog/product_view_attributes');
@@ -71,6 +72,7 @@ class OrganicInternet_SimpleConfigurableProducts_Catalog_Block_Product_View_Type
         }
         $config['ajaxBaseUrl'] = Mage::getUrl('oi/ajax/');
         $config['productName'] = $p->getName();
+        $config['deliveryTime'] = $p->getDeliveryTime();
         $config['description'] = $this->helper('catalog/output')->productAttribute($p, $p->getDescription(), 'description');
         $config['shortDescription'] = $this->helper('catalog/output')->productAttribute($p, nl2br($p->getShortDescription()), 'short_description');
 

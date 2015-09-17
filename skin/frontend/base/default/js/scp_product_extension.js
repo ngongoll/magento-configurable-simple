@@ -166,6 +166,7 @@ Product.Config.prototype.reloadPrice = function() {
         this.updateProductShortDescription(childProductId);
         this.updateProductDescription(childProductId);
         this.updateProductName(childProductId);
+        this.updateProductDeliveryTime(childProductId);
         this.updateProductAttributes(childProductId);
         this.updateFormProductId(childProductId);
         this.addParentProductIdToCartForm(this.config.productId);
@@ -189,6 +190,7 @@ Product.Config.prototype.reloadPrice = function() {
         this.updateProductShortDescription(false);
         this.updateProductDescription(false);
         this.updateProductName(false);
+        this.updateProductDeliveryTime(false);
         this.updateProductAttributes(false);
         this.showCustomOptionsBlock(false, false);
         if (usingZoomer) {
@@ -230,6 +232,16 @@ Product.Config.prototype.updateProductName = function(productId) {
     }
     $$('#product_addtocart_form div.product-name h1').each(function(el) {
         el.innerHTML = productName;
+    });
+};
+
+Product.Config.prototype.updateProductDeliveryTime = function(productId) {
+    var deliveryTime = this.config.deliveryTime;
+    if (productId && this.config.childProducts[productId].deliveryTime) {
+        deliveryTime = this.config.childProducts[productId].deliveryTime;
+    }
+    $$('#product_addtocart_form span.deliverytime').each(function(el) {
+        el.innerHTML = deliveryTime;
     });
 };
 
