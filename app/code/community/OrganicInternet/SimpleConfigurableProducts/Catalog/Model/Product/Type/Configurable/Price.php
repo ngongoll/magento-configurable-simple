@@ -77,7 +77,9 @@ class OrganicInternet_SimpleConfigurableProducts_Catalog_Model_Product_Type_Conf
         }
 
         if ($childProduct) {
-            return $childProduct->getPrice();
+//            return $childProduct->getPrice();
+            //            fix for special price of simple product
+            return $childProduct->getFinalPrice();
         }
 
         return false;
